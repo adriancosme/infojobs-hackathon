@@ -18,14 +18,7 @@ export const authOptions: NextAuthOptions = {
                 },
             },
             token: "http://www.infojobs.net/core/oauth2vc/authorize.xhtml",
-            userinfo: {
-                url: "https://api.infojobs.net/api/6/candidate",
-                async request({ client, tokens }) {
-                    console.log('request userinfo');
-                    const profile = await client.userinfo(tokens.access_token!)
-                    return profile;
-                }
-            },
+            userinfo: "https://api.infojobs.net/api/6/candidate",            
             profile(profile) {
                 return {
                     id: profile.id,
@@ -35,8 +28,8 @@ export const authOptions: NextAuthOptions = {
                 }
             },
             style: {
-                logo: './infojobs.svg',
-                logoDark: './infojobs.svg',
+                logo: '/infojobs.svg',
+                logoDark: '/infojobs.svg',
                 bg: '#2088c2',
                 text: "#fff",
                 bgDark: "#7289DA",
