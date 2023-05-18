@@ -9,6 +9,7 @@ export const authOptions: NextAuthOptions = {
             version: '2.0',
             clientId: process.env.INFOJOBS_CLIENT_ID,
             clientSecret: process.env.INFOJOBS_CLIENT_SECRET,
+            checks: ['none'],
             authorization: {
                 url: "http://www.infojobs.net/core/oauth2vc/index.xhtml",
                 params: {
