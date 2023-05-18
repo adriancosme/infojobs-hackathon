@@ -12,8 +12,9 @@ export default function IndexPage() {
         <form className="flex flex-col items-center justify-center gap-5">
           <h2 className="text-2xl font-bold">Sign in</h2>
           <button
-            onClick={() => {
-              signIn("infojobs");
+            onClick={(e) => {
+              e.preventDefault();
+              signIn("infojobs", { callbackUrl: "/resume" });
             }}
             className="flex flex-row rounded-lg bg-[#2088c2] px-5 py-2 text-white items-center"
           >
