@@ -2,7 +2,8 @@ import { Session } from "next-auth";
 import { headers } from "next/headers";
 import { Montserrat } from "next/font/google";
 import AuthContext from "@/app/AuthContext";
-import Header from "./components/header";
+import Header from "../components/header";
+
 export const metadata = {
   title: "Home - CvCheckr",
   description: "Check your CVs and get a score!",

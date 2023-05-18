@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {    
-    background: #F2F2F2;
+body {
+  background: #f2f2f2;
+}
+
+.container-wrapper {
+  max-width: min(100%, 1280px);
 }
