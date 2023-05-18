@@ -16,9 +16,6 @@ export const authOptions: NextAuthOptions = {
                     redirect_uri: process.env.INFOJOBS_CALLBACK_URL,
                     response_type: "code",
                 },
-                async request(context) {
-                    console.log(context);
-                }
             },
             token: "http://www.infojobs.net/core/oauth2vc/authorize.xhtml",
             userinfo: {
