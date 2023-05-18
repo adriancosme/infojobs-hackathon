@@ -2,8 +2,9 @@ import { Session } from "next-auth";
 import { headers } from "next/headers";
 import { Montserrat } from "next/font/google";
 import AuthContext from "@/app/AuthContext";
+import Header from "./components/header";
 export const metadata = {
-  title: "Check your CV",
+  title: "Home - CvCheckr",
   description: "Check your CVs and get a score!",
 };
 
@@ -33,7 +34,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <AuthContext session={session}>{children}</AuthContext>
+        <AuthContext session={session}>
+          <Header />
+          {children}
+        </AuthContext>
       </body>
     </html>
   );
