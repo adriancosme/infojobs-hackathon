@@ -13,15 +13,11 @@ const montserrat = Montserrat({
 });
 
 async function getSession(cookie: string): Promise<Session> {
-    console.log(cookie);
-  const response = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/auth/session`,
-    {
-      headers: {
-        cookie,
-      },
-    }
-  );
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/session`, {
+    headers: {
+      cookie,
+    },
+  });
 
   const session = await response.json();
 
@@ -36,7 +32,7 @@ export default async function RootLayout({
   const session = await getSession(headers().get("cookie") ?? "");
   return (
     <html lang="en">
-      <body className={montserrat.className}>        
+      <body className={montserrat.className}>
         <AuthContext session={session}>{children}</AuthContext>
       </body>
     </html>
