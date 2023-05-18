@@ -24,8 +24,8 @@ export const authOptions: NextAuthOptions = {
             },
             token: {
                 url: process.env.INFOJOBS_AUTHORIZATION_URL,
-                async request({ params, provider }) {
-                    const tokenUrl = new URL(provider?.token?.url ?? '');
+                async request({ params }) {                    
+                    const tokenUrl = new URL(process.env.INFOJOBS_AUTHORIZATION_URL ?? '');
                     tokenUrl.searchParams.append('grant_type', 'authorization_code');
                     tokenUrl.searchParams.append('code', params.code ?? '');
                     tokenUrl.searchParams.append('redirect_uri', process.env.INFOJOBS_CALLBACK_URL ?? '');
