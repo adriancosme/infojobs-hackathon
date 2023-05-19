@@ -61,12 +61,9 @@ export const authOptions: NextAuthOptions = {
                 }
             },
             profile(profile) {
-                console.log('profile', profile);
                 return {
                     id: profile.id,
                     name: profile.name,
-                    surname1: profile.surname1,
-                    surname2: profile.surname2,
                     email: profile.email,
                     image: profile.photo,
                 }
