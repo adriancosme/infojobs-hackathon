@@ -58,30 +58,24 @@ export default function ResumePage() {
               <span>Empresa 1</span>
               <div className="flex mt-2">
                 <button className="bg-blue-500 px-2 py-1 rounded-md mr-2 text-white uppercase text-[12px] font-[700]">
-                  Editar
-                </button>
-                <button className="bg-red-500 px-2 py-1 rounded-md mr-2 text-white uppercase text-[12px] font-[700]">
-                  Eliminar
+                  Ver
                 </button>
               </div>
             </div>
           </div>
-          <button className="bg-blue-500 px-2 py-1 rounded-md text-white uppercase text-[12px] font-[700]">
-            Agregar
-          </button>
         </section>
         <section className="flex-grow flex-shrink basis-0 relative">
           <form
             className="flex flex-col gap-4 flex-grow flex-shrink m-4"
             onSubmit={handleSubmit(handleSave)}
           >
-            <div className="flex flex-col gap-4">
+            {/* <div className="flex flex-col gap-4">
               <Label>Cargo</Label>
               <TextInput
                 errors={errors}
                 register={register}
                 type={InputType.TEXT}
-                name="cargo"
+                name="job"
                 placeholder="Web Developer"
               />
             </div>
@@ -103,7 +97,7 @@ export default function ResumePage() {
                     type={InputType.NUMBER}
                     max={12}
                     min={1}
-                    name="month"
+                    name="startMonth"
                     placeholder="MM"
                   />
                 </div>
@@ -115,7 +109,7 @@ export default function ResumePage() {
                     errors={errors}
                     register={register}
                     type={InputType.TEXT}
-                    name="year"
+                    name="startYear"
                     max={2023}
                     placeholder="AAAA"
                   />
@@ -127,7 +121,7 @@ export default function ResumePage() {
                     type={InputType.NUMBER}
                     max={12}
                     min={1}
-                    name="month"
+                    name="endMonth"
                     placeholder="MM"
                   />
                 </div>
@@ -139,13 +133,13 @@ export default function ResumePage() {
                     errors={errors}
                     register={register}
                     type={InputType.TEXT}
-                    name="year"
+                    name="endYear"
                     max={2023}
                     placeholder="AAAA"
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
             <Label>¿Qué hiciste en esa empresa?</Label>
             <TextArea
               errors={errors}
@@ -161,7 +155,7 @@ export default function ResumePage() {
               type="submit"
               className="bg-blue-500 px-2 py-1 rounded-md text-gray-100 uppercase text-sm font-bold"
             >
-              Guardar
+              Analizar
             </button>
           </form>
         </section>
