@@ -1,16 +1,23 @@
 "use client";
-import { useSession } from "next-auth/react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import TextInput, { InputType } from "../components/TextInput";
-import { useYupValidationResolver } from "../hooks/src/hooks/useYupValidationResolver";
-import { Label } from "../styled-components/label.styled.component";
-import { ChangeEvent } from "react";
 import TextArea from "../components/TextArea";
+import useCurriculum from "../hooks/useCurriculum";
+import { useYupValidationResolver } from "../hooks/useYupValidationResolver";
+import { Label } from "../styled-components/label.styled.component";
 export default function ResumePage() {
-  const { data } = useSession();
+  const {
+    curriculums,
+    isLoading,
+    isError,
+    trigger: analizeDescription,
+    isMutating,
+  } = useCurriculum();  
+  const [content, setContent] = useState("");
+
   const schema = yup.object({
-    cargo: yup.string().required("Campo requerido"),
+    description: yup.string().required("Campo requerido"),
   });
   const {
     register,
@@ -20,8 +27,12 @@ export default function ResumePage() {
     resolver: useYupValidationResolver(schema),
   });
 
-  const handleSave = (data: any) => {
-    console.log(data);
+  const handleAnalize = async () => {
+    const result = await analizeDescription({
+      lang: "ES",      
+      text: content,
+    });
+    console.log(result);
   };
   const onChangeTextInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const splitTextOnEveryNewLine = e.target.value.split("\n");
@@ -40,6 +51,16 @@ export default function ResumePage() {
     // set the value of the textarea to the lines joined by \n
     e.target.value = lines.join("\n");
   };
+
+  const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {
+    e.preventDefault();
+    const index = curriculums.experience?.findIndex((item) => item.id === id);
+    if (index === -1) {
+      return;
+    }    
+    setContent(curriculums.experience[index].description ?? "");
+  };
+
   return (
     <div className="container-wrapper mt-4 w-full m-auto">
       <div className="flex flex-row gap-4  w-full h-full">
@@ -48,98 +69,32 @@ export default function ResumePage() {
             Tu experiencia
           </h1>
           <div className="flex flex-col">
-            <div className="flex flex-col my-2.5">
-              <div className="flex flex-col">
-                <span className="block text-sm font-bold text-ellipsis max-w-full whitespace-nowrap overflow-hidden">
-                  Posición 1
-                  asdasdasdsahjkafshjkfashjkfashjkafshkjafskjhafshkjafsafsjhkafskjhafshkj
-                </span>
-              </div>
-              <span>Empresa 1</span>
-              <div className="flex mt-2">
-                <button className="bg-blue-500 px-2 py-1 rounded-md mr-2 text-white uppercase text-[12px] font-[700]">
-                  Ver
-                </button>
-              </div>
-            </div>
+            {curriculums?.experience?.map(({ id, job, company }) => {
+              return (
+                <div key={id} className="flex flex-col my-2.5">
+                  <div className="flex flex-col">
+                    <span className="block text-sm font-bold text-ellipsis max-w-full whitespace-nowrap overflow-hidden">
+                      {job}
+                    </span>
+                  </div>
+                  <span>{company}</span>
+                  <div className="flex mt-2">
+                    <button
+                      onClick={(e) => handleSetContent(e, id)}
+                      className="bg-blue-500 px-2 py-1 rounded-md mr-2 text-white uppercase text-[12px] font-[700]"
+                    >
+                      Ver
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
         <section className="flex-grow flex-shrink basis-0 relative">
           <form
-            className="flex flex-col gap-4 flex-grow flex-shrink m-4"
-            onSubmit={handleSubmit(handleSave)}
+            className="flex flex-col gap-4 flex-grow flex-shrink m-4"            
           >
-            {/* <div className="flex flex-col gap-4">
-              <Label>Cargo</Label>
-              <TextInput
-                errors={errors}
-                register={register}
-                type={InputType.TEXT}
-                name="job"
-                placeholder="Web Developer"
-              />
-            </div>
-            <Label>Empresa</Label>
-            <TextInput
-              errors={errors}
-              register={register}
-              type={InputType.TEXT}
-              name="company"
-              placeholder="Infojobs"
-            />
-            <Label>Periodo</Label>
-            <div className="flex flex-row">
-              <div className="flex relative">
-                <div className="p-0 border-0 mr-4 inline-block w-[80px]">
-                  <TextInput
-                    errors={errors}
-                    register={register}
-                    type={InputType.NUMBER}
-                    max={12}
-                    min={1}
-                    name="startMonth"
-                    placeholder="MM"
-                  />
-                </div>
-                <span className="flex items-center p-[7px] uppercase z-[1] text-black font-[900] text-sm my-0 mr-[-0.1em] ml-[-1.1em] border-t-2 border-b-2 border-solid border-transparent">
-                  -
-                </span>
-                <div className="p-0 border-0 mr-4 w-[100px] inline-block">
-                  <TextInput
-                    errors={errors}
-                    register={register}
-                    type={InputType.TEXT}
-                    name="startYear"
-                    max={2023}
-                    placeholder="AAAA"
-                  />
-                </div>
-                <div className="p-0 border-0 mr-4 inline-block w-[80px]">
-                  <TextInput
-                    errors={errors}
-                    register={register}
-                    type={InputType.NUMBER}
-                    max={12}
-                    min={1}
-                    name="endMonth"
-                    placeholder="MM"
-                  />
-                </div>
-                <span className="flex items-center p-[7px] uppercase z-[1] text-black font-[900] text-sm my-0 mr-[-0.1em] ml-[-1.1em] border-t-2 border-b-2 border-solid border-transparent">
-                  -
-                </span>
-                <div className="p-0 border-0 mr-4 w-[100px] inline-block">
-                  <TextInput
-                    errors={errors}
-                    register={register}
-                    type={InputType.TEXT}
-                    name="endYear"
-                    max={2023}
-                    placeholder="AAAA"
-                  />
-                </div>
-              </div>
-            </div> */}
             <Label>¿Qué hiciste en esa empresa?</Label>
             <TextArea
               errors={errors}
@@ -150,10 +105,13 @@ export default function ResumePage() {
               rows={10}
               placeholder="Describe tus logros obtenidos en esa empresa"
               onChange={onChangeTextInput}
+              defaultValue={content}
             ></TextArea>
             <button
-              type="submit"
+              type="button"
               className="bg-blue-500 px-2 py-1 rounded-md text-gray-100 uppercase text-sm font-bold"
+              disabled={isMutating}
+              onClick={handleAnalize}
             >
               Analizar
             </button>
