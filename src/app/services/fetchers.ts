@@ -1,2 +1,7 @@
-export const fetcher = (...args: any[]): Promise<any> =>
-  fetch(...args).then((res: Response) => res.json());
+export default async function fetcher<JSON = any>(
+  input: RequestInfo,
+  init?: RequestInit
+): Promise<JSON> {
+  const res = await fetch(input, init)
+  return res.json()
+}

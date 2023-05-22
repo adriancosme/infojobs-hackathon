@@ -54,11 +54,17 @@ export default function ResumePage() {
 
   const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {
     e.preventDefault();
-    const index = curriculums.experience?.findIndex((item) => item.id === id);
+    if(curriculums == null) {
+      return;
+    }
+    if(curriculums.experience == null) {
+      return;    
+    }
+    const index = curriculums?.experience?.findIndex((item) => item.id === id);
     if (index === -1) {
       return;
     }    
-    setContent(curriculums.experience[index].description ?? "");
+    setContent(curriculums?.experience[index].description ?? "");
   };
 
   return (

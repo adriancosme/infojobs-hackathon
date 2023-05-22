@@ -40,6 +40,7 @@ export default function TextInput({
   placeholder,
   errors,
 }: InputProps) {
+  const hasErrors = errors && errors[name];  
   return (
     <div>
       <input
@@ -52,7 +53,7 @@ export default function TextInput({
         onChange={() => {
           trigger && trigger();
         }}
-        className={`w-full font-[600] outline-none m-0 shadow-none px-4 py-2 rounded-md ${errors[name] ? 'border-2 border-red-500' : ''}`}
+        className={`w-full font-[600] outline-none m-0 shadow-none px-4 py-2 rounded-md ${hasErrors ? 'border-2 border-red-500' : ''}`}
       />
       {errors && formValidation(errors, name)}
     </div>
