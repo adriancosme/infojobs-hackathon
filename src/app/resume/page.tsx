@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import TextArea from "../components/TextArea";
@@ -13,26 +13,35 @@ export default function ResumePage() {
     isError,
     trigger: analizeDescription,
     isMutating,
-  } = useCurriculum();  
+  } = useCurriculum();
   const [content, setContent] = useState("");
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const [score, setScore] = useState(0);
 
   const schema = yup.object({
     description: yup.string().required("Campo requerido"),
   });
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: useYupValidationResolver(schema),
   });
 
   const handleAnalize = async () => {
+    setShowFeedback(false);
+    setFeedback("");
+    setScore(0);
     const result = await analizeDescription({
-      lang: "ES",      
+      lang: "ES",
       text: content,
     });
-    console.log(result);
+    if (result) {
+      setScore(result.score);
+      setFeedback(result.feedback);
+      setShowFeedback(true);
+    }
   };
   const onChangeTextInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const splitTextOnEveryNewLine = e.target.value.split("\n");
@@ -54,17 +63,27 @@ export default function ResumePage() {
 
   const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {
     e.preventDefault();
-    if(curriculums == null) {
+    if (curriculums == null) {
       return;
     }
-    if(curriculums.experience == null) {
-      return;    
+    if (curriculums.experience == null) {
+      return;
     }
     const index = curriculums?.experience?.findIndex((item) => item.id === id);
     if (index === -1) {
       return;
-    }    
+    }
     setContent(curriculums?.experience[index].description ?? "");
+  };
+
+  const getColorByScore = (score: number) => {
+    if (score > 8) {
+      return "text-green-500";
+    }
+    if (score > 5) {
+      return "text-yellow-500";
+    }
+    return "text-red-500";
   };
 
   return (
@@ -75,6 +94,8 @@ export default function ResumePage() {
             Tu experiencia
           </h1>
           <div className="flex flex-col">
+            {isLoading && <p>Cargando...</p>}
+            {isError && <p>Hubo un error al cargar los datos</p>}
             {curriculums?.experience?.map(({ id, job, company }) => {
               return (
                 <div key={id} className="flex flex-col my-2.5">
@@ -98,9 +119,7 @@ export default function ResumePage() {
           </div>
         </section>
         <section className="flex-grow flex-shrink basis-0 relative">
-          <form
-            className="flex flex-col gap-4 flex-grow flex-shrink m-4"            
-          >
+          <form className="flex flex-col gap-4 flex-grow flex-shrink m-4">
             <Label>¿Qué hiciste en esa empresa?</Label>
             <TextArea
               errors={errors}
@@ -115,13 +134,26 @@ export default function ResumePage() {
             ></TextArea>
             <button
               type="button"
-              className="bg-blue-500 px-2 py-1 rounded-md text-gray-100 uppercase text-sm font-bold"
+              className="bg-blue-500 px-2 py-1 rounded-md text-gray-100 uppercase text-sm font-bold disabled:bg-gray-500"
               disabled={isMutating}
               onClick={handleAnalize}
             >
-              Analizar
+              {isMutating ? "Analizando..." : "Analizar"}
             </button>
           </form>
+          {showFeedback && (
+            <section
+              role="alert"
+              className="mt-4 flex flex-col items-center justify-center gap-4 bg-white rounded-lg p-6 m-4 shadow-sm"
+            >
+              <h2 className="text-xl font-bold text-gray-800">Feedback</h2>
+              <span className="text-gray-600 text-lg">
+                Tu puntuacion es de:{" "}
+                <strong className={getColorByScore(score)}>{score}</strong>
+              </span>
+              <p className="text-gray-600 text-lg">{feedback}</p>
+            </section>
+          )}
         </section>
       </div>
     </div>
