@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.1.7",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
@@ -18,11 +19,14 @@
     "eslint-config-next": "13.4.2",
     "next": "13.4.2",
     "next-auth": "^4.22.1",
+    "openai": "^3.2.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
+    "react-redux": "^8.0.5",
     "styled-components": "6.0.0-rc.1",
+    "swr": "^2.1.5",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
     "yup": "^1.1.1"
