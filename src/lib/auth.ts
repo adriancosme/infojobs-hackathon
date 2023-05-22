@@ -3,7 +3,7 @@ import { NextAuthOptions } from "next-auth";
 export const authOptions: NextAuthOptions = {
     pages: {
         signIn: '/',
-        signOut: '/',        
+        signOut: '/',
     },
     providers: [
         {
@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
             },
             token: {
                 url: process.env.INFOJOBS_AUTHORIZATION_URL,
-                async request({ params }) {                    
+                async request({ params }) {
                     const tokenUrl = new URL(process.env.INFOJOBS_AUTHORIZATION_URL ?? '');
                     tokenUrl.searchParams.append('grant_type', 'authorization_code');
                     tokenUrl.searchParams.append('code', params.code ?? '');
@@ -79,13 +79,17 @@ export const authOptions: NextAuthOptions = {
         }
     ],
     callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
-            console.log(user, account, profile, email, credentials);
-            return true;
+        async jwt({ token, account }) {
+            if (account) {
+                token.accessToken = account.access_token;
+                token.refreshToken = account.refresh_token;
+            }
+            return token;
         },
-        async jwt({ token }) {
-            console.log('jwt', token);
-            return token
+        async session({ session, token }) {
+            session.accessToken = token.accessToken;
+            session.refreshToken = token.refreshToken;
+            return session;
         },
     },
     debug: false,
