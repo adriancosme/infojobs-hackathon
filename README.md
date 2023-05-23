@@ -1,8 +1,30 @@
+# CvCheckr
+
+## Images of the project
+
+### Login
+
+Sign in with your infojobs account and analize your experiences
+
+![Login page] (./docs/images/login.png)
+
+### Main page
+
+Click in every experience and then analize to get a score and feedback. You can modify the description and analize it.
+
+![Main page] (./docs/images/cv.png)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First copy env sample file and set the enviroments
+
+```bash
+cp .env.sample .env.local
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -20,12 +42,14 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+I use the following resouces to build this app:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Infojobs Documentation] (https://developer.infojobs.net/) - You can find the endpoints
+- [OAuth2] (https://openwebinars.net/blog/que-es-oauth2/) - How OAuth2 works?
+- [OAuth2 Explanation] (https://www.youtube.com/watch?v=nNVlewjKQEQ&pp=ygUFb2F1dGg%3D) - Youtube video of OAuth2
+- [OpenAI] (https://platform.openai.com/docs/guides/chat) - Chat completation API
 
 ## Deploy on Vercel
 
