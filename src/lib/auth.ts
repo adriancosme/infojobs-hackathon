@@ -10,7 +10,7 @@ export const authOptions: NextAuthOptions = {
             clientId: process.env.INFOJOBS_CLIENT_ID ?? "",
             clientSecret: process.env.INFOJOBS_CLIENT_SECRET ?? "",
             infojobs_scopes: process.env.INFOJOBS_SCOPES ?? "",
-            redirect_uri: process.env.INFOJOBS_SCOPES ?? "",
+            redirect_uri: process.env.INFOJOBS_CALLBACK_URL ?? "",
         }),
     ],
     callbacks: {
