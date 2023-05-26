@@ -59,6 +59,7 @@ export default function ResumePage() {
     });
     // set the value of the textarea to the lines joined by \n
     e.target.value = lines.join("\n");
+    setContent(e.target.value);
   };
 
   const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {
