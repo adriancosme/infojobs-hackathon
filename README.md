@@ -6,13 +6,13 @@
 
 Sign in with your infojobs account and analize your experiences
 
-![Login page] (./docs/images/login.png)
+![Login page](./docs/images/login.png)
 
 ### Main page
 
 Click in every experience and then analize to get a score and feedback. You can modify the description and analize it.
 
-![Main page] (./docs/images/cv.png)
+![Main page](./docs/images/cv.png)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
