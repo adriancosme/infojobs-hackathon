@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import TextArea from "../components/TextArea";
@@ -43,8 +43,12 @@ export default function ResumePage() {
       setShowFeedback(true);
     }
   };
-  const onChangeTextInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const splitTextOnEveryNewLine = e.target.value.split("\n");
+  const onChangeTextInput = (e: ChangeEvent<HTMLTextAreaElement>) => {    
+    setContent(e.target.value);
+  };
+
+  useEffect(() => {
+    const splitTextOnEveryNewLine = content.split("\n");
     const lines = splitTextOnEveryNewLine.map((line, index) => {
       // Check if line is empty
       if (line.length === 0) {
@@ -58,12 +62,11 @@ export default function ResumePage() {
       return `• ${line}`;
     });
     // set the value of the textarea to the lines joined by \n
-    e.target.value = lines.join("\n");
-    setContent(e.target.value);
-  };
+    const finalText = lines.join("\n");
+    setContent(finalText);
+  }, [content])
 
-  const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {
-    setContent("");
+  const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {    
     console.log(id, curriculums);
     e.preventDefault();
     if (curriculums == null) {
