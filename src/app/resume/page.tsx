@@ -63,6 +63,7 @@ export default function ResumePage() {
   };
 
   const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {
+    setContent("");
     console.log(id, curriculums);
     e.preventDefault();
     if (curriculums == null) {
@@ -78,7 +79,7 @@ export default function ResumePage() {
     }
     const description = curriculums?.experience[index].description;
     console.log(description)
-    if(description != null) {
+    if(description != null) {      
       setContent(description);
     }
   };
