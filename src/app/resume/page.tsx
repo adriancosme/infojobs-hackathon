@@ -30,6 +30,9 @@ export default function ResumePage() {
   });
 
   const handleAnalize = async () => {
+    if(content.trim().length === 0) {
+      return;
+    }
     setShowFeedback(false);
     setFeedback("");
     setScore(0);
@@ -47,8 +50,7 @@ export default function ResumePage() {
     setContent(e.target.value);
   };
 
-  useEffect(() => {
-    console.log(content);
+  useEffect(() => {    
     const splitTextOnEveryNewLine = content.split("\n");
     const lines = splitTextOnEveryNewLine.map((line, index) => {
       // Check if line is empty
@@ -67,8 +69,7 @@ export default function ResumePage() {
     setContent(finalText);
   }, [content])
 
-  const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {    
-    console.log(id, curriculums);
+  const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {        
     e.preventDefault();
     if (curriculums == null) {
       return;
@@ -76,13 +77,11 @@ export default function ResumePage() {
     if (curriculums.experience == null) {
       return;
     }
-    const index = curriculums?.experience?.findIndex((item) => item.id === id);
-    console.log(index);
+    const index = curriculums?.experience?.findIndex((item) => item.id === id);    
     if (index === -1) {
       return;
     }
-    const description = curriculums?.experience[index].description;
-    console.log(description)
+    const description = curriculums?.experience[index].description;    
     if(description != null) {      
       setContent(description);
     }
