@@ -76,8 +76,11 @@ export default function ResumePage() {
     if (index === -1) {
       return;
     }
-    console.log(curriculums?.experience[index]);
-    setContent(curriculums?.experience[index].description ?? "");
+    const description = curriculums?.experience[index].description;
+    console.log(description)
+    if(description != null) {
+      setContent(description);
+    }
   };
 
   const getColorByScore = (score: number) => {
