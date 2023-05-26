@@ -3,12 +3,12 @@
 import { signIn } from "next-auth/react";
 export default function IndexPage() {
   return (
-    <main className="flex flex-row items-center justify-around min-h-screen">
-      <section className="bg-[#167DB7] h-screen w-3/6 flex flex-col items-center justify-center">
+    <main className="flex flex-col items-center justify-around md:flex-row">
+      <section className="bg-[#167DB7] h-[75vh] md:h-screen w-full md:w-3/6 flex flex-col items-center justify-center">
         <h1 className="text-5xl font-bold text-white">CvCheckr</h1>
-        <p className="text-2xl">Check your CVs and receive feedback!</p>
+        <p className="text-2xl text-center">Check your CVs and receive feedback!</p>
       </section>
-      <section className="w-3/6">
+      <section className="w-full md:w-3/6 mt-4 md:mt-0 md:h-full">
         <form className="flex flex-col items-center justify-center gap-5">
           <h2 className="text-2xl font-bold">Sign in</h2>
           <button
