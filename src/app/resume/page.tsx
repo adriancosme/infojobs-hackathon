@@ -72,9 +72,11 @@ export default function ResumePage() {
       return;
     }
     const index = curriculums?.experience?.findIndex((item) => item.id === id);
+    console.log(index);
     if (index === -1) {
       return;
     }
+    console.log(curriculums?.experience[index]);
     setContent(curriculums?.experience[index].description ?? "");
   };
 
