@@ -46,10 +46,10 @@ I used the following resouces to build this app:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Infojobs Documentation] (https://developer.infojobs.net/) - You can find the endpoints
-- [OAuth2] (https://openwebinars.net/blog/que-es-oauth2/) - How OAuth2 works?
-- [OAuth2 Explanation] (https://www.youtube.com/watch?v=nNVlewjKQEQ&pp=ygUFb2F1dGg%3D) - Youtube video of OAuth2
-- [OpenAI] (https://platform.openai.com/docs/guides/chat) - Chat completation API
+- [Infojobs Documentation](https://developer.infojobs.net/) - You can find the endpoints
+- [OAuth2](https://openwebinars.net/blog/que-es-oauth2/) - How OAuth2 works?
+- [OAuth2 Explanation](https://www.youtube.com/watch?v=nNVlewjKQEQ&pp=ygUFb2F1dGg%3D) - Youtube video of OAuth2
+- [OpenAI](https://platform.openai.com/docs/guides/chat) - Chat completation API
 
 ## Deploy on Vercel
 
