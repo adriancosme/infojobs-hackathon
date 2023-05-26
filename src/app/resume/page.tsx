@@ -48,6 +48,7 @@ export default function ResumePage() {
   };
 
   useEffect(() => {
+    console.log(content);
     const splitTextOnEveryNewLine = content.split("\n");
     const lines = splitTextOnEveryNewLine.map((line, index) => {
       // Check if line is empty
