@@ -63,6 +63,7 @@ export default function ResumePage() {
   };
 
   const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {
+    console.log(id, curriculums);
     e.preventDefault();
     if (curriculums == null) {
       return;
