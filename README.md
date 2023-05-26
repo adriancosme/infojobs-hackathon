@@ -4,7 +4,7 @@
 
 ### Login
 
-Sign in with your infojobs account and analize your experiences
+Sign in with your infojobs account and analize your experiences. Also you can write in the input and then analize it.
 
 ![Login page](./docs/images/login.png)
 
