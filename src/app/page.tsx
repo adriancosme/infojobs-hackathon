@@ -6,7 +6,7 @@ export default function IndexPage() {
     <main className="flex flex-row items-center justify-around min-h-screen">
       <section className="bg-[#167DB7] h-screen w-3/6 flex flex-col items-center justify-center">
         <h1 className="text-5xl font-bold text-white">CvCheckr</h1>
-        <p className="text-2xl">Check your CVs and get a score!</p>
+        <p className="text-2xl">Check your CVs and receive feedback!</p>
       </section>
       <section className="w-3/6">
         <form className="flex flex-col items-center justify-center gap-5">
