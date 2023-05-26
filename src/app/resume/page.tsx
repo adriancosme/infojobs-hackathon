@@ -141,8 +141,8 @@ export default function ResumePage() {
               cols={30}
               rows={10}
               placeholder="Describe tus logros obtenidos en esa empresa"
-              onChange={onChangeTextInput}
-              defaultValue={content}
+              onChange={onChangeTextInput}              
+              value={content}
             ></TextArea>
             <button
               type="button"
