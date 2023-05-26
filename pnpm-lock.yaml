@@ -9,7 +9,7 @@ specifiers:
   autoprefixer: 10.4.14
   eslint: 8.40.0
   eslint-config-next: 13.4.2
-  infojobs-next-auth-provider: ^1.0.2
+  infojobs-next-auth-provider: ^1.0.3
   next: 13.4.2
   next-auth: ^4.22.1
   openai: ^3.2.1
@@ -33,7 +33,7 @@ dependencies:
   autoprefixer: 10.4.14_postcss@8.4.23
   eslint: 8.40.0
   eslint-config-next: 13.4.2_3qfatcekpgbllh6uk5ivyhkbxq
-  infojobs-next-auth-provider: 1.0.2_rnitsfx45uokwlns7q34thuoza
+  infojobs-next-auth-provider: 1.0.3_rnitsfx45uokwlns7q34thuoza
   next: 13.4.2_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.22.1_cmp7sjki5xcmfyvhcokzzink7a
   openai: 3.2.1
@@ -3019,8 +3019,8 @@ packages:
       wrappy: 1.0.2
     dev: false
 
-  /infojobs-next-auth-provider/1.0.2_rnitsfx45uokwlns7q34thuoza:
-    resolution: {integrity: sha512-Yint0S34sl2dsEY60fYLN15c7WAoz+LAzjNrs+ZQ9HkwCgwr8YePCP02E7ml8Sjgr0xD1VSUPKqPTGVL2TZ1RQ==}
+  /infojobs-next-auth-provider/1.0.3_rnitsfx45uokwlns7q34thuoza:
+    resolution: {integrity: sha512-TG3LM/6eicVq0LpFYtqJTPaPZJVcvPoR517F3NB1mZnuTKLkMvDb7Jt1ByLKzVV6BG38paZgeBxQ1MjYQqujmw==}
     peerDependencies:
       next: ^13.3.4
       next-auth: ^4.22.1
