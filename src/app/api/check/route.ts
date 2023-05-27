@@ -32,14 +32,12 @@ const INITIAL_PROMPT: Array<ChatCompletionRequestMessage> = [
         • Use personal pronouns (such as I)
         • Abbreviate
         • Use a narrative style
-        • Use slang or colloquialisms
-        • Check if there are buzzwords
+        • Use slang or colloquialisms        
         
         Do: 
         • Be consistent in format and content
         • Use consistent spacing, underlining, italics, bold,
-        and capitalization for emphasis
-        • Use bulletpoints
+        and capitalization for emphasis        
         
         Check common mistakes. Make sure that you validate the following:
         • Spelling and grammar errors
@@ -47,6 +45,7 @@ const INITIAL_PROMPT: Array<ChatCompletionRequestMessage> = [
         • Not well organized, concise, or easy to skim
         • Not demonstrating results
         • Too long
+        • Buzzwords
         
         You should validate all previous mentioned and give a score from 1 to 10 of the text and give feedback.
         If the JSON provided with the key [lang] contains [ES] you will provide feedback in Spanish. If the JSON provided with the key [lang] contains [EN] you will provide feedback in English. By default provide feedback in English.
