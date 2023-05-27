@@ -6,6 +6,7 @@ import TextArea from "../components/TextArea";
 import useCurriculum from "../hooks/useCurriculum";
 import { useYupValidationResolver } from "../hooks/useYupValidationResolver";
 import { Label } from "../styled-components/label.styled.component";
+import TextInput from "../components/TextInput";
 export default function ResumePage() {
   const {
     curriculums,
@@ -18,6 +19,7 @@ export default function ResumePage() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [score, setScore] = useState(0);
+  const [lang, setLang] = useState("ES");
 
   const schema = yup.object({
     description: yup.string().required("Campo requerido"),
@@ -37,7 +39,7 @@ export default function ResumePage() {
     setFeedback("");
     setScore(0);
     const result = await analizeDescription({
-      lang: "ES",
+      lang: lang,
       text: content,
     });
     if (result) {
@@ -49,6 +51,10 @@ export default function ResumePage() {
   const onChangeTextInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
+
+  const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    setLang(e.target.value);
+  }
 
   useEffect(() => {
     const splitTextOnEveryNewLine = content.split("\n");
@@ -156,6 +162,10 @@ export default function ResumePage() {
               onChange={onChangeTextInput}
               value={content}
             ></TextArea>
+            <select className="w-full font-[600] outline-none m-0 shadow-none px-4 py-2 rounded-md" name="lang" onChange={onChangeSelect} value={lang}>
+              <option value="ES">Español</option>
+              <option value="EN">Ingles</option>
+            </select>
             <button
               type="button"
               className="bg-blue-500 px-2 py-1 rounded-md text-gray-100 uppercase text-sm font-bold disabled:bg-gray-500"
