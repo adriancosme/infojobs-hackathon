@@ -164,7 +164,7 @@ export default function ResumePage() {
             ></TextArea>
             <select className="w-full font-[600] outline-none m-0 shadow-none px-4 py-2 rounded-md" name="lang" onChange={onChangeSelect} value={lang}>
               <option value="ES">Español</option>
-              <option value="EN">Ingles</option>
+              <option value="EN">Inglés</option>
             </select>
             <button
               type="button"
