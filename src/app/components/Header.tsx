@@ -10,7 +10,7 @@ export default function HeaderComponent() {
 
   return (
     <header className="bg-white shadow-sm">
-      <div className="py-5 w-full box-border mx-auto block max-w-7xl">
+      <div className="py-5 w-full box-border mx-auto block max-w-7xl px-4 md:px-2">
         <div className="flex relative items-center h-10">
           <Link href="/resume" className="flex-shrink justify-items-start whitespace-nowrap overflow-hidden mr-4">
             CvCheckr
