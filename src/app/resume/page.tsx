@@ -30,7 +30,7 @@ export default function ResumePage() {
   });
 
   const handleAnalize = async () => {
-    if(content.trim().length === 0) {
+    if (content.trim().length === 0) {
       return;
     }
     setShowFeedback(false);
@@ -46,11 +46,11 @@ export default function ResumePage() {
       setShowFeedback(true);
     }
   };
-  const onChangeTextInput = (e: ChangeEvent<HTMLTextAreaElement>) => {    
+  const onChangeTextInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     const splitTextOnEveryNewLine = content.split("\n");
     const lines = splitTextOnEveryNewLine.map((line, index) => {
       // Check if line is empty
@@ -67,9 +67,9 @@ export default function ResumePage() {
     // set the value of the textarea to the lines joined by \n
     const finalText = lines.join("\n");
     setContent(finalText);
-  }, [content])
+  }, [content]);
 
-  const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {        
+  const handleSetContent = (e: MouseEvent<HTMLButtonElement>, id: number) => {
     e.preventDefault();
     if (curriculums == null) {
       return;
@@ -77,12 +77,12 @@ export default function ResumePage() {
     if (curriculums.experience == null) {
       return;
     }
-    const index = curriculums?.experience?.findIndex((item) => item.id === id);    
+    const index = curriculums?.experience?.findIndex((item) => item.id === id);
     if (index === -1) {
       return;
     }
-    const description = curriculums?.experience[index].description;    
-    if(description != null) {      
+    const description = curriculums?.experience[index].description;
+    if (description != null) {
       setContent(description);
     }
   };
@@ -130,28 +130,6 @@ export default function ResumePage() {
           </div>
         </section>
         <section className="flex-grow flex-shrink basis-0 relative">
-          <form className="flex flex-col gap-4 flex-grow flex-shrink m-4">
-            <Label>¿Qué hiciste en esa empresa?</Label>
-            <TextArea
-              errors={errors}
-              name="description"
-              register={register}
-              className="w-full font-[600] outline-none m-0 shadow-none px-4 py-2 rounded-md"
-              cols={30}
-              rows={10}
-              placeholder="Describe tus logros obtenidos en esa empresa"
-              onChange={onChangeTextInput}              
-              value={content}
-            ></TextArea>
-            <button
-              type="button"
-              className="bg-blue-500 px-2 py-1 rounded-md text-gray-100 uppercase text-sm font-bold disabled:bg-gray-500"
-              disabled={isMutating}
-              onClick={handleAnalize}
-            >
-              {isMutating ? "Analizando..." : "Analizar"}
-            </button>
-          </form>
           {showFeedback && (
             <section
               role="alert"
@@ -165,6 +143,28 @@ export default function ResumePage() {
               <p className="text-gray-600 text-lg">{feedback}</p>
             </section>
           )}
+          <form className="flex flex-col gap-4 flex-grow flex-shrink m-4">
+            <Label>¿Qué hiciste en esa empresa?</Label>
+            <TextArea
+              errors={errors}
+              name="description"
+              register={register}
+              className="w-full font-[600] outline-none m-0 shadow-none px-4 py-2 rounded-md"
+              cols={30}
+              rows={10}
+              placeholder="Describe tus logros obtenidos en esa empresa"
+              onChange={onChangeTextInput}
+              value={content}
+            ></TextArea>
+            <button
+              type="button"
+              className="bg-blue-500 px-2 py-1 rounded-md text-gray-100 uppercase text-sm font-bold disabled:bg-gray-500"
+              disabled={isMutating}
+              onClick={handleAnalize}
+            >
+              {isMutating ? "Analizando..." : "Analizar"}
+            </button>
+          </form>
         </section>
       </div>
     </div>
